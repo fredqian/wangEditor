@@ -23,11 +23,13 @@ function bindEvent(editor: Editor): void {
  */
 function _bindChange(editor: Editor): void {
     const { onchange } = editor.config
-    editor.txt.eventHooks.changeEvents.push(function () {
-        let html = editor.txt.html() || ''
-        onchange(html)
-        editor.txt.togglePlaceholder()
-    })
+    if (onchange) {
+        editor.txt.eventHooks.changeEvents.push(function () {
+            let html = editor.txt.html() || ''
+            onchange(html)
+            editor.txt.togglePlaceholder()
+        })
+    }
 }
 
 /**
